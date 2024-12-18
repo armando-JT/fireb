@@ -528,24 +528,33 @@ class _Auth1WidgetState extends State<Auth1Widget>
                                                       GoRouter.of(context)
                                                           .prepareAuthEvent();
 
-                                                      final user =
-                                                          await authManager
-                                                              .signInWithEmail(
-                                                        context,
-                                                        _model
-                                                            .emailAddressTextController
-                                                            .text,
-                                                        _model
-                                                            .passwordTextController
-                                                            .text,
-                                                      );
-                                                      if (user == null) {
-                                                        return;
+                                                      final userEmail = _model.emailAddressTextController.text;
+
+                                                      if (userEmail.contains("@kinpos.com")) {
+                                                        final user =
+                                                            await authManager
+                                                                .signInWithEmail(
+                                                          context,
+                                                          _model
+                                                              .emailAddressTextController
+                                                              .text,
+                                                          _model
+                                                              .passwordTextController
+                                                              .text,
+                                                        );
+                                                        if (user == null) {
+                                                          return;
+                                                        }
+
+                                                        context.goNamedAuth(
+                                                            'Dashboard5',
+                                                            context.mounted);
+                                                      }
+                                                      else {
+                                                        print("ur unemployed");
                                                       }
 
-                                                      context.goNamedAuth(
-                                                          'Dashboard5',
-                                                          context.mounted);
+
                                                     },
                                                     text: 'Sign In',
                                                     options: FFButtonOptions(
