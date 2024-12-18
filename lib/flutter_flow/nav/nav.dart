@@ -74,26 +74,24 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
       navigatorKey: appNavigatorKey,
-      errorBuilder: (context, state) => appStateNotifier.loggedIn
-          ? const Dashboard5Widget()
-          : const CreateAccount3Widget(),
+      errorBuilder: (context, state) =>
+          appStateNotifier.loggedIn ? const Dashboard5Widget() : const Auth1Widget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
-          builder: (context, _) => appStateNotifier.loggedIn
-              ? const Dashboard5Widget()
-              : const CreateAccount3Widget(),
-        ),
-        FFRoute(
-          name: 'CreateAccount3',
-          path: '/createAccount3',
-          builder: (context, params) => const CreateAccount3Widget(),
+          builder: (context, _) =>
+              appStateNotifier.loggedIn ? const Dashboard5Widget() : const Auth1Widget(),
         ),
         FFRoute(
           name: 'Dashboard5',
           path: '/dashboard5',
           builder: (context, params) => const Dashboard5Widget(),
+        ),
+        FFRoute(
+          name: 'Auth1',
+          path: '/auth1',
+          builder: (context, params) => const Auth1Widget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
@@ -264,7 +262,7 @@ class FFRoute {
 
           if (requireAuth && !appStateNotifier.loggedIn) {
             appStateNotifier.setRedirectLocationIfUnset(state.uri.toString());
-            return '/createAccount3';
+            return '/auth1';
           }
           return null;
         },
