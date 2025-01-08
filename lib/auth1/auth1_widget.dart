@@ -171,7 +171,7 @@ class _Auth1WidgetState extends State<Auth1Widget>
                                     padding: const EdgeInsetsDirectional.fromSTEB(
                                         16.0, 0.0, 0.0, 0.0),
                                     child: Text(
-                                      'brand.ai',
+                                      'Kinpos',
                                       style: FlutterFlowTheme.of(context)
                                           .headlineMedium
                                           .override(
